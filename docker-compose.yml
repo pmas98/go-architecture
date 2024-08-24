@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: book_renting_postgres
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: book_renting_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # modular_architecture:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.modular_architecture
+  #   container_name: modular_architecture
+  #   environment:
+  #     - SECRET_KEY=02b7173f4279595502116919e219072c0255d546b5f577e7771b5905a837a8ab
+  #     - DB_CONNECTION_STRING=user=myuser password=mypassword dbname=book_renting_db host=postgres port=5432 sslmode=disable
+  #   depends_on:
+  #     - postgres
+  #   ports:
+  #     - "8080:8080" 
+
+volumes:
+  postgres_data:
